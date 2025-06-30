@@ -2,6 +2,7 @@
 import React from 'react'
 import Header from './Header'
 import { FaGithub } from 'react-icons/fa'
+import Leaderboard from './Leaderboard'
 
 const Hero: React.FC = () => {
     return (
@@ -20,6 +21,7 @@ const Hero: React.FC = () => {
                     <button className='bg-white text-black px-4 py-1.5 text-lg rounded-3xl font-medium'>Search</button>
                 </div>
             </div>
+            <Leaderboard />
         </div>
 
     )
