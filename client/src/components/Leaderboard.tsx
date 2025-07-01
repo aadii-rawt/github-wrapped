@@ -133,7 +133,7 @@ const Leaderboard: React.FC = () => {
                     <tbody className="text-white divide-y divide-gray-700/50">
                         {dummyData.map((user, idx) => (
                             <tr key={user.username} className="hover:bg-[#333333] transition">
-                                <td className="px-4 py-3 font-semibold text-gray-400">{idx + 1 <= 3 ? <img src={rank[idx]} className="w-9" /> :  idx + 1}</td>
+                                <td className={`px-4 ${idx+1 > 3 && 'pl-7'} py-3 font-semibold text-gray-400`}>{idx + 1 <= 3 ? <img src={rank[idx]} className="w-9" /> :  idx + 1}</td>
                                 <td className="px-4 py-3">
                                     <img
                                         src={user.profile}
