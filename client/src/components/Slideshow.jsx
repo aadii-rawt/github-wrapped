@@ -8,6 +8,7 @@ import SecondStory from "../components/SecondStory";
 import ThirdStep from "../components/ThirdStep";
 import ForthStep from "../components/ForthStep";
 import { useGlobalContext } from '../context/GloabalContext'
+import MusicPlayer from "./MusicPlayer";
 const AUTO_PLAY_INTERVAL = 10000; // milliseconds
 
 const SlideShow = () => {
@@ -115,7 +116,7 @@ const SlideShow = () => {
     };
 
     return (
-        <div className="flex items-center justify-center min-h-screen bg-black text-white relative">
+        <div className="flex items-center justify-center min-h-screen bg-black text-white relative overflow-hidden">
             {
                 loading ? (
                     <AnimatePresence>
@@ -179,6 +180,8 @@ const SlideShow = () => {
                     </button>
                 </div>
             )}
+
+            {!loading && <MusicPlayer/>}
         </div>
     );
 };
