@@ -2,9 +2,10 @@ import React from 'react'
 
 const Header: React.FC = () => {
     return (
-        <div className='flex justify-end p-7 absolute top-0 right-0'>
-            <button
-                href="#"
+        <div className='flex justify-end p-7 mb-20 z-50'>
+            <a
+                href="https://github.com/aadii-rawt/github-wrapped"
+                target='_blank'
                 className="flex cursor-pointer overflow-hidden items-center  focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 bg-black text-white shadow hover:bg-black/90 h-9  py-2 px-4 whitespace-pre md:flex group relative  justify-center gap-2 rounded-md transition-all duration-300 ease-out hover:ring-2 hover:ring-black ring-offset-1"
             >
                 <span
@@ -18,7 +19,7 @@ const Header: React.FC = () => {
                         aria-hidden="true"
                         fill="currentColor"
                         viewBox="0 0 24 24"
-                        xmlns="http://www.w3.org/2000/svg"
+                        xmlns="http://www.w3.orgher/2000/svg"
                     >
                         <path
                             clip-rule="evenodd"
@@ -30,7 +31,7 @@ const Header: React.FC = () => {
                     <span className="ml-1 text-white">Star on GitHub</span>
                 </div>
                
-            </button>
+            </a>
 
 
         </div>

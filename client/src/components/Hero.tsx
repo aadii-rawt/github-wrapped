@@ -23,11 +23,11 @@ const Hero: React.FC = () => {
     }
 
     return (
-        <div className="relative h-screen w-full bg-black ">
-            <div className="absolute  h-full w-full bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] [background-size:16px_16px] [mask-image:radial-gradient(ellipse_50%_50%_at_50%_50%,#F5F5F5B3_50%,transparent_100%)]">
+        <div className="relative ,min-h-screen w-full">
+            <div className="absolute z-10 h-full w-full bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] [background-size:16px_16px] [mask-image:radial-gradient(ellipse_50%_50%_at_50%_50%,#F5F5F5B3_50%,transparent_100%)]">
             </div>
-            <Header />
-            <div className='w-full text-white h-full flex items-center justify-center flex-col z-[10000]'>
+            <div className='w-full text-white h-full flex items-center flex-col z-[10000] bg-transparent'>
+                <Header />
                 <h1 className='text-7xl font-bold'>Code, Push, Merge, <br /></h1>
                 <h1 className='text-7xl font-bold'> Repeat - Wrapped.</h1>
                 <p className=' mt-8 text-lg'>See how many commits you crushed, bugs you squashed, and stars you earned.</p>
@@ -47,8 +47,12 @@ const Hero: React.FC = () => {
                         }
                     </button>
                 </div>
+                <Leaderboard />
+
+                <footer className='mt-20 pb-10 z-[99999]'>
+                    <h1 className='text-white text-sm  text-center'>build with 🤍 by <a href="https://github.com/sahillrathore" target='_blank' className='underline cursor-pointer'>sahillrathore</a>  &  <a href="https://github.com/aadii-rawt" target='_blank' className='underline cursor-pointer'> aadii-rawt</a> </h1>
+                </footer>
             </div>
-            <Leaderboard />
         </div>
 
     )
