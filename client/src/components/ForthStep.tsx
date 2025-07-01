@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { motion, useAnimation } from 'framer-motion';
+import { useGlobalContext } from '../context/GloabalContext';
 
-const ForthStep = () => {
+const ForthStep = ( ) => {
     const [count, setCount] = useState(0);
-    const target = 302;
+    const { userStats } = useGlobalContext()
+    const target = userStats?.stats?.longestStreak;
 
     // Count up animation
     useEffect(() => {

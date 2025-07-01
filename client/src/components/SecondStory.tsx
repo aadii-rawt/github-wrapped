@@ -1,48 +1,52 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { motion } from 'framer-motion'
+import { useGlobalContext } from '../context/GloabalContext';
 
 const SecondStory: React.FC = () => {
+
+  const { username, userStats } = useGlobalContext()
+  
   return (
     <div className="absolute inset-0 flex z-50 items-center justify-center bg-transparent text-white mt-5">
       <div className="relative h-full w-full">
-       
-          <div className="flex items-center justify-center flex-col h-full">
 
-            <div className="flex items-center justify-center">
-              <motion.img
-                src="https://i.pinimg.com/736x/d8/fb/7c/d8fb7cd26ec88903a16f9006f8124ffd.jpg"
-                alt=""
-                initial={{ x: -100, opacity: 0 }}
-                animate={{ x: 0, opacity: 1 }}
-                transition={{ duration: 1 }}
-                className="w-28 h-28 rounded-full border-4 border-white"
-              />
+        <div className="flex items-center justify-center flex-col h-full">
 
-              <motion.img
-                src="https://i.pinimg.com/736x/fb/05/9f/fb059f3f5b19de57b6c96dc62a6882f1.jpg"
-                alt=""
-                initial={{ x: 100, opacity: 0 }}
-                animate={{ x: 0, opacity: 1 }}
-                transition={{ duration: 1 }}
-                className="w-28 h-28 rounded-full -ml-8 border-4 border-white"
-              />
-            </div>
+          <div className="flex items-center justify-center">
+            <motion.img
+              src="https://i.pinimg.com/736x/d8/fb/7c/d8fb7cd26ec88903a16f9006f8124ffd.jpg"
+              alt=""
+              initial={{ x: -100, opacity: 0 }}
+              animate={{ x: 0, opacity: 1 }}
+              transition={{ duration: 1 }}
+              className="w-28 h-28 rounded-full border-4 border-white"
+            />
 
-            <motion.div
-              className="text-center mt-10"
-              initial={{ y: 50, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              transition={{ duration: 1.2, delay: 0.3 }}
-            >
-              <h1 className="text-3xl font-bold">aadii-rawt</h1>
-              <span className="font-semibold">X</span>
-              <h1 className="text-3xl font-bold">Itachi Uchiha</h1>
-            </motion.div>
-
+            <motion.img
+              src={userStats?.user?.avatar_url}
+              alt=""
+              initial={{ x: 100, opacity: 0 }}
+              animate={{ x: 0, opacity: 1 }}
+              transition={{ duration: 1 }}
+              className="w-28 h-28 rounded-full -ml-8 border-4 border-white"
+            />
           </div>
 
+          <motion.div
+            className="text-center mt-10"
+            initial={{ y: 50, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ duration: 1.2, delay: 0.3 }}
+          >
+            <h1 className="text-3xl font-bold">{userStats?.user?.login}</h1>
+            <span className="font-semibold">X</span>
+            <h1 className="text-3xl font-bold">Itachi Uchiha</h1>
+          </motion.div>
+
         </div>
+
       </div>
+    </div>
   )
 }
 
