@@ -31,7 +31,7 @@ const Hero: React.FC = () => {
                 <h1 className='text-7xl font-bold'>Code, Push, Merge, <br /></h1>
                 <h1 className='text-7xl font-bold'> Repeat - Wrapped.</h1>
                 <p className=' mt-8 text-lg'>See how many commits you crushed, bugs you squashed, and stars you earned.</p>
-                <p className='mt-2 text-lg'>Your GitHub activity, transformed into a beautiful, shareable story.</p>
+                <p className='mt-2 text-lg font-outfit'>Your GitHub activity, transformed into a beautiful, shareable story.</p>
                 <div className='border z-50 bg-black pl-3 pr-1.5 py-1.5 mt-5 rounded-3xl flex items-center gap-4'>
                     <FaGithub size={28} />
                     <input
