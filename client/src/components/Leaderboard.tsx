@@ -1,4 +1,8 @@
-import React from "react";
+
+import React, { useRef } from "react";
+import { motion, useScroll, useTransform } from "framer-motion";
+
+// ... your dummyData and type definitions remain unchanged
 
 type User = {
     username: string;
@@ -8,6 +12,13 @@ type User = {
     commits: number;
     streak: number;
 };
+
+type RankType = {
+    1: String;
+    2: String;
+    3: String;
+}
+const rank: RankType = ["./first.png","./second.png","./third.png"]
 
 const dummyData: User[] = [
     {
@@ -93,46 +104,54 @@ const dummyData: User[] = [
 ];
 
 const Leaderboard: React.FC = () => {
+    const ref = useRef<HTMLDivElement>(null);
+    const { scrollYProgress } = useScroll({
+        target: ref,
+        offset: ["start 0.9", "start 0.6"], // faster scroll range
+    });
+
+    const scale = useTransform(scrollYProgress, [0, 1], [0.8, 1]);
     return (
-        <div className="bg-black">
-            <div className="py-10 px-4 max-w-7xl mx-auto black">
-                <h2 className="text-3xl font-bold text-white mb-6">🏆 Leaderboard</h2>
-                <div className="overflow-x-auto rounded-lg border border-gray-700 bg-[#1a1a1a]">
-                    <table className="min-w-full divide-y divide-gray-700 text-sm">
-                        <thead className="bg-[#2a2a2a] text-gray-300 uppercase text-xs">
-                            <tr>
-                                <th className="px-4 py-3 text-left">#</th>
-                                <th className="px-4 py-3 text-left">Profile</th>
-                                <th className="px-4 py-3 text-left">Username</th>
-                                <th className="px-4 py-3 text-left">Score</th>
-                                <th className="px-4 py-3 text-left">Character</th>
-                                <th className="px-4 py-3 text-left">Commits</th>
-                                <th className="px-4 py-3 text-left">Streak</th>
+        <motion.div
+            ref={ref}
+            style={{ scale }}
+            className="bg-black z-40 min-w-6xl max-w-xl mt-10 transition-transform duration-300"
+        >
+            <div className="overflow-x-auto rounded-lg border border-gray-700 bg-[#18181C]">
+                <table className="w-full divide-y divide-gray-700 text-sm">
+                    <thead className="bg-[#121111] text-gray-300 text-xs">
+                        <tr>
+                            <th className="px-4 py-3 text-left font-semibold text-sm">Rank</th>
+                            <th className="px-4 py-3 text-left font-semibold text-sm">Profile</th>
+                            <th className="px-4 py-3 text-left font-semibold text-sm">Username</th>
+                            <th className="px-4 py-3 text-left font-semibold text-sm">Score</th>
+                            <th className="px-4 py-3 text-left font-semibold text-sm">Character</th>
+                            <th className="px-4 py-3 text-left font-semibold text-sm">Commits</th>
+                            <th className="px-4 py-3 text-left font-semibold text-sm">Streak</th>
+                        </tr>
+                    </thead>
+                    <tbody className="text-white divide-y divide-gray-700/50">
+                        {dummyData.map((user, idx) => (
+                            <tr key={user.username} className="hover:bg-[#333333] transition">
+                                <td className="px-4 py-3 font-semibold text-gray-400">{idx + 1 <= 3 ? <img src={rank[idx]} className="w-9" /> :  idx + 1}</td>
+                                <td className="px-4 py-3">
+                                    <img
+                                        src={user.profile}
+                                        alt={user.username}
+                                        className="w-8 h-8 rounded-full border border-white/20"
+                                    />
+                                </td>
+                                <td className="px-4 py-3 font-medium">{user.username}</td>
+                                <td className="px-4 py-3 font-semibold text-green-400">{user.score}</td>
+                                <td className="px-4 py-3 text-purple-300">{user.character}</td>
+                                <td className="px-4 py-3">{user.commits}</td>
+                                <td className="px-4 py-3 text-pink-400">{user.streak}🔥</td>
                             </tr>
-                        </thead>
-                        <tbody className="text-white divide-y divide-gray-700">
-                            {dummyData.map((user, idx) => (
-                                <tr key={user.username} className="hover:bg-[#333333] transition">
-                                    <td className="px-4 py-3 font-semibold text-gray-400">{idx + 1}</td>
-                                    <td className="px-4 py-3">
-                                        <img
-                                            src={user.profile}
-                                            alt={user.username}
-                                            className="w-8 h-8 rounded-full border border-white/20"
-                                        />
-                                    </td>
-                                    <td className="px-4 py-3 font-medium">{user.username}</td>
-                                    <td className="px-4 py-3 font-semibold text-green-400">{user.score}</td>
-                                    <td className="px-4 py-3 text-purple-300">{user.character}</td>
-                                    <td className="px-4 py-3">{user.commits}</td>
-                                    <td className="px-4 py-3 text-pink-400">{user.streak}🔥</td>
-                                </tr>
-                            ))}
-                        </tbody>
-                    </table>
-                </div>
+                        ))}
+                    </tbody>
+                </table>
             </div>
-        </div>
+        </motion.div>
     );
 };
 
