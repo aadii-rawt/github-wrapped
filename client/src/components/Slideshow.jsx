@@ -56,7 +56,7 @@ const SlideShow = () => {
 
                 const userData = await axios.get(`https://api.github.com/users/${username}`);
                 
-                const stats = await axios.get(`https://git-wrapped.com/api/github/stats?username=${username}`);
+                const stats = await axios.get(`http://localhost:5000/api/stats?username=${username}`);
 
                 const combined = {
                     user: userData.data,
