@@ -9,7 +9,7 @@ import ThirdStep from "../components/ThirdStep";
 import ForthStep from "../components/ForthStep";
 import { useGlobalContext } from '../context/GloabalContext'
 import MusicPlayer from "./MusicPlayer";
-const AUTO_PLAY_INTERVAL = 10000; // milliseconds
+const AUTO_PLAY_INTERVAL = 40000; // milliseconds
 
 const SlideShow = () => {
     const { userStats, setUserStats } = useGlobalContext()
@@ -41,7 +41,7 @@ const SlideShow = () => {
     }, [loading])
 
     // List of components/slides
-    const slides = [<SecondStory />, <ThirdStep />, <ForthStep />, <Stats />,];
+    const slides = [<SecondStory />, <ForthStep />, <Stats />,];
 
     useEffect(() => {
         const fetchUserStats = async () => {
@@ -134,14 +134,14 @@ const SlideShow = () => {
                     </AnimatePresence>
                 )
                     :
-                    (<div className="max-w-md min-w-[350px] h-[620px] rounded-md relative overflow-hidden border border-white/10  shadow-lg bg-slate-950">
+                    (<div className={`max-w-md min-w-[350px] h-[620px] rounded-md relative overflow-visible border border-white/10  shadow-lg bg-slate-950`}>
                         <div class="absolute bottom-0 left-0 right-0 top-0 bg-[linear-gradient(to_right,#4f4f4f2e_1px,transparent_1px),linear-gradient(to_bottom,#4f4f4f2e_1px,transparent_1px)] bg-[size:14px_24px]"></div>
                         <div className="absolute top-0 left-0 w-full flex space-x-1 p-2 z-30 bg-transparent">
 
                             {slides.map((_, idx) => (
                                 <div
                                     key={idx}
-                                    className="flex-1 h-1  relative bg-transparent overflow-hidden rounded"
+                                    className="flex-1 h-1  relative bg-transparent overflow-visible rounded"
                                 >
                                     {idx === currentIndex && (
                                         <div

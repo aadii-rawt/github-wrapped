@@ -14,7 +14,7 @@ const SecondStory: React.FC = () => {
 
           <div className="flex items-center justify-center">
             <motion.img
-              src="https://i.pinimg.com/736x/d8/fb/7c/d8fb7cd26ec88903a16f9006f8124ffd.jpg"
+            src={userStats?.user?.avatar_url}
               alt=""
               initial={{ x: -100, opacity: 0 }}
               animate={{ x: 0, opacity: 1 }}
@@ -23,7 +23,7 @@ const SecondStory: React.FC = () => {
             />
 
             <motion.img
-              src={userStats?.user?.avatar_url}
+              src="https://i.pinimg.com/736x/d8/fb/7c/d8fb7cd26ec88903a16f9006f8124ffd.jpg"       
               alt=""
               initial={{ x: 100, opacity: 0 }}
               animate={{ x: 0, opacity: 1 }}
