@@ -1,10 +1,10 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { motion } from 'framer-motion'
 import { useGlobalContext } from '../context/GloabalContext';
 
 const SecondStory: React.FC = () => {
 
-  const { username, userStats } = useGlobalContext()
+  const { userStats } = useGlobalContext()
   
   return (
     <div className="absolute inset-0 flex z-50 items-center justify-center bg-transparent text-white mt-5">

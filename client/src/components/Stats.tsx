@@ -1,11 +1,11 @@
 
-import React, { useState } from 'react'
+import React from 'react'
 import { IoIosShareAlt } from 'react-icons/io'
 import { MdFileDownload } from 'react-icons/md'
 import { useGlobalContext } from '../context/GloabalContext';
 import { GoArrowRight } from 'react-icons/go';
 
-const Stats: React = () => {
+const Stats: React.FC = () => {
 
     const { userStats } = useGlobalContext()
 

@@ -1,25 +1,31 @@
 
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import Header from './Header'
 import { FaGithub } from 'react-icons/fa'
 import Leaderboard from './Leaderboard'
-import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
 import { ImSpinner2 } from 'react-icons/im'
 import { useGlobalContext } from '../context/GloabalContext'
 
 const Hero: React.FC = () => {
 
-    const { username, setUsername, userStats, setUserStats } = useGlobalContext()
+    const { username, setUsername, } = useGlobalContext()
     const [loading, setLoading] = useState(false);
     const navigate = useNavigate();
 
     const handleUserStats = () => {
+    setLoading(true)
         if (!username) {
+
             return;
         } else {
             navigate(`/stats?username=${username}`);
         }
+        // try {
+            
+        // } catch (error) {
+            
+        // }
     }
 
     return (

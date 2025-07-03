@@ -13,11 +13,7 @@ type User = {
     streak: number;
 };
 
-type RankType = {
-    1: String;
-    2: String;
-    3: String;
-}
+type RankType = string[]
 const rank: RankType = ["./first.png","./second.png","./third.png"]
 
 const dummyData: User[] = [

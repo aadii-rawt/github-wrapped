@@ -1,8 +1,6 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
-import Header from './components/Header'
 import Hero from './components/Hero'
 import SlideShow from './components/SlideShow'
-import { useState } from 'react'
 import { GlobalProvider } from './context/GloabalContext'
 
 function App() {
@@ -19,10 +17,6 @@ function App() {
             </Routes>
           </BrowserRouter>
         </GlobalProvider>
-
-        <div className='text-white absolute bottom-8 right-0 bg-[#161617] p-1 rounded-3xl text-sm px-2 mx-7'>
-          <button>build with 🤍 by  <a href="https://github.com/aadii-rawt" target='_blank' className='hover:text-underline'>aadii-rawt</a></button>
-        </div>
       </div>
     </div>
   )

@@ -56,19 +56,18 @@ const SlideShow = () => {
 
                 const userData = await axios.get(`https://api.github.com/users/${username}`);
                 console.log(import.meta.env.VITE_API_URL);
-                
-                
+
                 const stats = await axios.get(`${import.meta.env.VITE_API_URL}/api/stats?username=${username}`);
 
                 const combined = {
                     user: userData.data,
                     stats: stats.data
-                };                  
+                };
                 console.log(combined);
-                
+
                 setUserStats(combined);
                 console.log(userStats);
-                
+
                 // navigate('/stats')
 
             } catch (err) {
@@ -121,19 +120,17 @@ const SlideShow = () => {
         <div className="flex items-center justify-center min-h-screen bg-black text-white relative overflow-hidden">
             {
                 loading ? (
-                    <AnimatePresence>
                         <motion.div
                             key={loadingIndex}
-                            initial={{ opacity: 0, y: 20 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            exit={{ opacity: 0, y: -20 }}
-                            transition={{ duration: 0.6 }}
+                            // initial={{ opacity: 0, y: 20 }}
+                            // animate={{ opacity: 1, y: 0 }}
+                            // exit={{ opacity: 0, y: -20 }}
+                            // transition={{ duration: 0.6 }}
                             className="text-center max-w-xs mx-auto"
                         >
                             <p className="text-xl font-semibold animate-pulse mb-2">Loading...</p>
                             <p className="text-white/70 animate-pulse text-sm">{loadingMessages[loadingIndex]}</p>
                         </motion.div>
-                    </AnimatePresence>
                 )
                     :
                     (<div className={`max-w-md min-w-[350px] h-[620px] rounded-md relative overflow-visible border border-white/10  shadow-lg bg-slate-950`}>
@@ -183,7 +180,7 @@ const SlideShow = () => {
                 </div>
             )}
 
-            {!loading && <MusicPlayer/>}
+            {/* {!loading && <MusicPlayer />} */}
         </div>
     );
 };
