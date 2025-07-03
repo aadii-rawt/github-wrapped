@@ -1,17 +1,17 @@
-import React, { useState, useEffect, useRef, use } from "react";
-import { motion, AnimatePresence } from 'framer-motion'
+import React, { useState, useEffect, useRef } from "react";
+import { motion } from 'framer-motion'
 import axios from 'axios'
 import { MdKeyboardArrowRight, MdOutlineKeyboardArrowLeft } from "react-icons/md";
 import { useLocation } from 'react-router-dom'
-import Stats from "../components/Stats";
-import SecondStory from "../components/SecondStory";
-import ThirdStep from "../components/ThirdStep";
-import ForthStep from "../components/ForthStep";
+import Stats from "./Stats";
+import SecondStory from "./SecondStory";
+// import ThirdStep from "./ThirdStep";
+import ForthStep from "./ForthStep";
 import { useGlobalContext } from '../context/GloabalContext'
 import MusicPlayer from "./MusicPlayer";
 const AUTO_PLAY_INTERVAL = 40000; // milliseconds
 
-const SlideShow = () => {
+const SlideShow : React.FC = () => {
     const { userStats, setUserStats } = useGlobalContext()
 
     const [currentIndex, setCurrentIndex] = useState(0);
@@ -105,7 +105,7 @@ const SlideShow = () => {
         };
 
         progressRef.current = requestAnimationFrame(animate);
-        return () => cancelAnimationFrame(progressRef.current);
+        return () => cancelAnimationFrame(progressRef?.current);
     }, [currentIndex]);
 
     const goNext = () => {
@@ -180,7 +180,7 @@ const SlideShow = () => {
                 </div>
             )}
 
-            {/* {!loading && <MusicPlayer />} */}
+            {!loading && <MusicPlayer />}
         </div>
     );
 };

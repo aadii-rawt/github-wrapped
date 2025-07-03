@@ -1,6 +1,6 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import Hero from './components/Hero'
-import SlideShow from './components/SlideShow'
+import SlideShow from './components/Slideshow'
 import { GlobalProvider } from './context/GloabalContext'
 
 function App() {

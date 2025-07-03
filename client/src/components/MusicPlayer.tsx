@@ -2,7 +2,12 @@ import React, { useEffect, useRef, useState } from 'react'
 import { FaMusic, FaVolumeMute, FaVolumeUp } from 'react-icons/fa'
 import { IoIosArrowDown } from 'react-icons/io'
 
-const tracks = [
+type TrackType  = {
+    name : string;
+    file : string
+}
+
+const tracks : TrackType[] = [
     {
         name: 'Raftaar',
         file: '/bawe.mp3'
@@ -17,7 +22,7 @@ const tracks = [
     }
 ]
 
-const MusicPlayer = () => {
+const MusicPlayer : React.FC = () => {
     const audioRef = useRef(new Audio(tracks[1].file)) // Default track: Techno House
     const [currentTrack, setCurrentTrack] = useState(tracks[1])
     const [isMuted, setIsMuted] = useState(false)
