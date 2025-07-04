@@ -20,9 +20,20 @@ const loadingMessages: string[] = [
     "Making your stats beautiful..."
 ]
 
+const characterMap = [
+    { min: 5000, profile : "https://i.pinimg.com/736x/c4/d8/bd/c4d8bd2bc75d17c9bec2edf92c7aa8e8.jpg", name: "Itachi", gif: "https://i.pinimg.com/originals/5d/8d/62/5d8d62a2adf61026ed1a9fd70a30a3af.gif", level: "Akatsuki" },
+    { min: 2000, profile : "https://i.pinimg.com/736x/51/85/c2/5185c26e752c6c50e1f4704640c9ad96.jpg", name: "Satoru Gojo", gif: "https://i.pinimg.com/originals/84/96/f1/8496f17e386aee82ef9217b5abffd2e5.gif", level: "Jujutsu Special" },
+    { min: 1000, profile : "https://i.pinimg.com/736x/c5/65/9e/c5659e228862cc1911e80bc7d11d09de.jpg", name: "Goku", gif: "https://i.pinimg.com/originals/c3/2f/7d/c32f7de073039e5adeaa6a02c96ba1e6.gif", level: "Saiyan God" },
+    { min: 500, profile : "https://i.pinimg.com/736x/da/23/b9/da23b9fe3f689477e1ba960b3c6c8e39.jpg", name: "Kakashi", gif: "https://i.pinimg.com/originals/4e/cb/f0/4ecbf0c166f71da7a6b2add6ceb0c750.gif", level: "Hasira" },
+    { min: 200, profile : "https://i.pinimg.com/736x/11/d4/13/11d41360d4d51ad3e07eca1f4bc7f8dd.jpg", name: "Naruto", gif: "https://i.pinimg.com/originals/ab/d0/0f/abd00f7078c46f1f596516c26635e631.gif", level: "Hokage" },
+    { min: 50, profile : "https://i.pinimg.com/736x/79/e2/c9/79e2c9402014ead1eebf6c9f184c5bf8.jpg", name: "Roronoa Zoro", gif: "https://i.pinimg.com/originals/d4/ab/0e/d4ab0e8dcf098ced14d901fc9a21a01c.gif", level: "Swordsman" },
+    { min: 0, profile : "https://i.pinimg.com/736x/a8/2d/76/a82d7650231cbc5cbfba1920d07003fb.jpg", name: "Luffy", gif: "https://i.pinimg.com/originals/8e/57/ca/8e57ca54624cf8d18bb334080a626634.gif", level: "Rookie" }
+];
+
+
 const SlideShow: React.FC = () => {
 
-    const { userStats, setUserStats, notification, setNotification } = useGlobalContext()
+    const { userStats, setUserStats, notification, setNotification, setCharacterInfo } = useGlobalContext()
     const [currentIndex, setCurrentIndex] = useState(0);
     const [progress, setProgress] = useState(0);
     const [loading, setLoading] = useState(true);
@@ -52,6 +63,11 @@ const SlideShow: React.FC = () => {
 
     const slides = [<SecondStory />, <ForthStep />, <Stats />,];
 
+
+    const getCharacterInfo = (totalCommits: number) => {
+        return characterMap.find(({ min }) => totalCommits >= min) || characterMap[characterMap.length - 1];
+    };
+
     //============== get user stats ======================
     useEffect(() => {
         const fetchUserStats = async () => {
@@ -62,14 +78,19 @@ const SlideShow: React.FC = () => {
 
                 const user = userRes.data;
                 const stats = statsRes.data;
-
                 setUserStats({ user, stats });
 
+
+
+                const totalCommits = userStats?.stats?.totalCommits || 0;
+                const characterInfo = getCharacterInfo(totalCommits);
+                setCharacterInfo(characterInfo)
                 // Save/update to your MongoDB via backend
                 await axios.post(`${import.meta.env.VITE_API_URL}/api/stats/save`, {
                     username,
                     user,
-                    stats
+                    stats,
+                    characterInfo
                 });
 
             } catch (err) {
@@ -133,7 +154,7 @@ const SlideShow: React.FC = () => {
                 )
                     :
                     (<div className={`max-w-md min-w-[350px] h-[620px] rounded-md relative overflow-visible border border-white/10  shadow-lg bg-slate-950`}>
-                        <div class="absolute bottom-0 left-0 right-0 top-0 bg-[linear-gradient(to_right,#4f4f4f2e_1px,transparent_1px),linear-gradient(to_bottom,#4f4f4f2e_1px,transparent_1px)] bg-[size:14px_24px]"></div>
+                        <div className="absolute bottom-0 left-0 right-0 top-0 bg-[linear-gradient(to_right,#4f4f4f2e_1px,transparent_1px),linear-gradient(to_bottom,#4f4f4f2e_1px,transparent_1px)] bg-[size:14px_24px]"></div>
                         <div className="absolute top-0 left-0 w-full flex space-x-1 p-2 z-30 bg-transparent">
 
                             {slides.map((_, idx) => (

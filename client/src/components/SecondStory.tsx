@@ -4,8 +4,8 @@ import { useGlobalContext } from '../context/GloabalContext';
 
 const SecondStory: React.FC = () => {
 
-  const { userStats } = useGlobalContext()
-  
+  const { userStats, characterInfo } = useGlobalContext()
+
   return (
     <div className="absolute inset-0 flex z-50 items-center justify-center bg-transparent text-white mt-5">
       <div className="relative h-full w-full">
@@ -14,7 +14,7 @@ const SecondStory: React.FC = () => {
 
           <div className="flex items-center justify-center">
             <motion.img
-            src={userStats?.user?.avatar_url}
+              src={userStats?.user?.avatar_url}
               alt=""
               initial={{ x: -100, opacity: 0 }}
               animate={{ x: 0, opacity: 1 }}
@@ -23,7 +23,7 @@ const SecondStory: React.FC = () => {
             />
 
             <motion.img
-              src="https://i.pinimg.com/736x/d8/fb/7c/d8fb7cd26ec88903a16f9006f8124ffd.jpg"       
+              src={characterInfo?.profile}
               alt=""
               initial={{ x: 100, opacity: 0 }}
               animate={{ x: 0, opacity: 1 }}
@@ -40,7 +40,7 @@ const SecondStory: React.FC = () => {
           >
             <h1 className="text-3xl font-bold">{userStats?.user?.login}</h1>
             <span className="font-semibold">X</span>
-            <h1 className="text-3xl font-bold">Itachi</h1>
+            <h1 className="text-3xl font-bold">{characterInfo?.name}</h1>
           </motion.div>
 
         </div>
