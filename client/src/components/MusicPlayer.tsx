@@ -26,7 +26,7 @@ const MusicPlayer : React.FC = () => {
     const audioRef = useRef(new Audio(tracks[1].file)) // Default track: Techno House
     const [currentTrack, setCurrentTrack] = useState(tracks[1])
     const [isMuted, setIsMuted] = useState(false)
-    const [isDown, setIsDown] = useState(false);
+    const [isDown, setIsDown] = useState(true);
 
     // Auto-play on mount
     useEffect(() => {

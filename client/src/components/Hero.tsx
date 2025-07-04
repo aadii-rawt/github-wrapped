@@ -6,30 +6,39 @@ import Leaderboard from './Leaderboard'
 import { useNavigate } from 'react-router-dom'
 import { ImSpinner2 } from 'react-icons/im'
 import { useGlobalContext } from '../context/GloabalContext'
+import axios from 'axios'
+import ToastNotification from './ToastNotification'
 
 const Hero: React.FC = () => {
 
-    const { username, setUsername, } = useGlobalContext()
+    const { username, setUsername, notification, setNotification } = useGlobalContext()
     const [loading, setLoading] = useState(false);
+    const [error, setError] = useState(null)
     const navigate = useNavigate();
 
-    const handleUserStats = () => {
-    setLoading(true)
+    const handleUserStats = async () => {
+        setLoading(true);
         if (!username) {
-
+            setLoading(false);
             return;
-        } else {
-            navigate(`/stats?username=${username}`);
         }
-        // try {
-            
-        // } catch (error) {
-            
-        // }
-    }
+        try {
+            const res = await axios.get(`https://api.github.com/users/${username}`);
+            if (res.status == 200) {
+                navigate(`/stats?username=${username}`);
+            }
+        } catch (err) {
+            setNotification({ msg: "User not found", text: "Please check username and try again" })
+            console.error('Error fetching GitHub user:', err);
+        } finally {
+            setLoading(false);
+        }
+    };
+
 
     return (
-        <div className="relative ,min-h-screen w-full">
+
+        <div className="relative min-h-screen w-full">
             <div className="absolute z-10 h-full w-full bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] [background-size:16px_16px] [mask-image:radial-gradient(ellipse_50%_50%_at_50%_50%,#F5F5F5B3_50%,transparent_100%)]">
             </div>
             <div className='w-full text-white h-full flex items-center flex-col z-[10000] bg-transparent'>
@@ -46,10 +55,10 @@ const Hero: React.FC = () => {
                         className='border-none outline-none text-lg w-70'
                         onChange={(e) => setUsername(e.target.value)}
                     />
-                    <button onClick={handleUserStats} className='bg-white flex justify-center items-center min-w-28 min-h-[40px] text-black px-4 py-1.5 text-lg rounded-3xl font-medium'>
+                    <button disabled={loading} onClick={handleUserStats} className='bg-white cursor-pointer outline-none c flex justify-center items-center min-w-28 min-h-[40px] text-black px-4 py-1.5 text-lg rounded-3xl font-medium'>
                         {
                             loading ? <div className='animate-spin'> <ImSpinner2 size={20} /></div>
-                            : 'Search'
+                                : 'Search'
                         }
                     </button>
                 </div>
@@ -59,6 +68,8 @@ const Hero: React.FC = () => {
                     <h1 className='text-white text-sm  text-center'>build with 🤍 by <a href="https://github.com/sahillrathore" target='_blank' className='underline cursor-pointer'>sahillrathore</a>  &  <a href="https://github.com/aadii-rawt" target='_blank' className='underline cursor-pointer'> aadii-rawt</a> </h1>
                 </footer>
             </div>
+
+            {notification && <ToastNotification />  }
         </div>
 
     )

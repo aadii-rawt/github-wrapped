@@ -40,7 +40,7 @@ const SecondStory: React.FC = () => {
           >
             <h1 className="text-3xl font-bold">{userStats?.user?.login}</h1>
             <span className="font-semibold">X</span>
-            <h1 className="text-3xl font-bold">Itachi Uchiha</h1>
+            <h1 className="text-3xl font-bold">Itachi</h1>
           </motion.div>
 
         </div>

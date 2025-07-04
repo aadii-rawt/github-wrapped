@@ -1,8 +1,8 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, use } from "react";
 import { motion } from 'framer-motion'
 import axios from 'axios'
 import { MdKeyboardArrowRight, MdOutlineKeyboardArrowLeft } from "react-icons/md";
-import { useLocation } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 import Stats from "./Stats";
 import SecondStory from "./SecondStory";
 // import ThirdStep from "./ThirdStep";
@@ -11,27 +11,37 @@ import { useGlobalContext } from '../context/GloabalContext'
 import MusicPlayer from "./MusicPlayer";
 const AUTO_PLAY_INTERVAL = 40000; // milliseconds
 
-const SlideShow : React.FC = () => {
-    const { userStats, setUserStats } = useGlobalContext()
 
+const loadingMessages: string[] = [
+    "Wrapping your GitHub year...",
+    "Analyzing commits and stars...",
+    "Pulling contributions from the matrix...",
+    "Sorting PRs and issues...",
+    "Making your stats beautiful..."
+]
+
+const SlideShow: React.FC = () => {
+
+    const { userStats, setUserStats, notification, setNotification } = useGlobalContext()
     const [currentIndex, setCurrentIndex] = useState(0);
     const [progress, setProgress] = useState(0);
-    const [loading, setLoading] = useState(false);
+    const [loading, setLoading] = useState(true);
     const [loadingIndex, setLoadingIndex] = useState(0)
     const progressRef = useRef();
     const location = useLocation()
     const queryParams = new URLSearchParams(location.search)
     const username = queryParams.get('username')
+    const navigate = useNavigate()
 
-    const loadingMessages = [
-        "Wrapping your GitHub year...",
-        "Analyzing commits and stars...",
-        "Pulling contributions from the matrix...",
-        "Sorting PRs and issues...",
-        "Making your stats beautiful..."
-    ]
+    useEffect(() => {
+        if (!username) {
+            setNotification({ msg: "User not found", text: "Please check username and try again" })
+            navigate('/')
+            return
+        }
+    }, [username])
 
-    // Rotate loading message every 2.5 seconds
+    // Update loading message every 2.5 seconds
     useEffect(() => {
         if (!loading) return
         const interval = setInterval(() => {
@@ -40,35 +50,27 @@ const SlideShow : React.FC = () => {
         return () => clearInterval(interval)
     }, [loading])
 
-    // List of components/slides
     const slides = [<SecondStory />, <ForthStep />, <Stats />,];
 
+    //============== get user stats ======================
     useEffect(() => {
         const fetchUserStats = async () => {
-
-            if (!username) {
-                console.log('Enter Username');
-                return;
-            }
-
+            if (!username) return
             try {
-                setLoading(true);
+                const userRes = await axios.get(`https://api.github.com/users/${username}`);
+                const statsRes = await axios.get(`${import.meta.env.VITE_API_URL}/api/stats?username=${username}`);
 
-                const userData = await axios.get(`https://api.github.com/users/${username}`);
-                console.log(import.meta.env.VITE_API_URL);
+                const user = userRes.data;
+                const stats = statsRes.data;
 
-                const stats = await axios.get(`${import.meta.env.VITE_API_URL}/api/stats?username=${username}`);
+                setUserStats({ user, stats });
 
-                const combined = {
-                    user: userData.data,
-                    stats: stats.data
-                };
-                console.log(combined);
-
-                setUserStats(combined);
-                console.log(userStats);
-
-                // navigate('/stats')
+                // Save/update to your MongoDB via backend
+                await axios.post(`${import.meta.env.VITE_API_URL}/api/stats/save`, {
+                    username,
+                    user,
+                    stats
+                });
 
             } catch (err) {
                 console.log(err);
@@ -76,6 +78,7 @@ const SlideShow : React.FC = () => {
                 setLoading(false);
             }
         }
+
         fetchUserStats();
     }, [])
 
@@ -108,6 +111,9 @@ const SlideShow : React.FC = () => {
         return () => cancelAnimationFrame(progressRef?.current);
     }, [currentIndex]);
 
+
+
+
     const goNext = () => {
         setCurrentIndex((prev) => (prev < slides.length - 1 ? prev + 1 : prev));
     };
@@ -120,17 +126,10 @@ const SlideShow : React.FC = () => {
         <div className="flex items-center justify-center min-h-screen bg-black text-white relative overflow-hidden">
             {
                 loading ? (
-                        <motion.div
-                            key={loadingIndex}
-                            // initial={{ opacity: 0, y: 20 }}
-                            // animate={{ opacity: 1, y: 0 }}
-                            // exit={{ opacity: 0, y: -20 }}
-                            // transition={{ duration: 0.6 }}
-                            className="text-center max-w-xs mx-auto"
-                        >
-                            <p className="text-xl font-semibold animate-pulse mb-2">Loading...</p>
-                            <p className="text-white/70 animate-pulse text-sm">{loadingMessages[loadingIndex]}</p>
-                        </motion.div>
+                    <div className="text-center max-w-xs mx-auto flex flex-col items-center justify-center space-y-4 p-6  rounded-lg shadow-lg"  >
+                        <div className="loader"></div>
+                        <p className="text-white/70 animate-pulse text-sm">{loadingMessages[loadingIndex]}</p>
+                    </div>
                 )
                     :
                     (<div className={`max-w-md min-w-[350px] h-[620px] rounded-md relative overflow-visible border border-white/10  shadow-lg bg-slate-950`}>

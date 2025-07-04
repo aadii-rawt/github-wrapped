@@ -1,7 +1,7 @@
 const express = require("express");
 const { Octokit } = require("@octokit/rest");
 const router = express.Router();
-const UserStats = require('./models/stats');
+const UserStats = require('../models/stats');
 
 require("dotenv").config();
 
@@ -131,7 +131,7 @@ router.get("/", async (req, res) => {
   }
 });
 
-router.get("/save", async (req, res) => {
+router.post("/save", async (req, res) => {
   const { username, user, stats } = req.body;
   if (!username || !user || !stats) return res.status(400).json({ error: 'Missing data' });
 
@@ -147,5 +147,28 @@ router.get("/save", async (req, res) => {
     res.status(500).json({ error: 'Database error' });
   }
 })
+
+// GET top 10 users by commit count
+router.get('/leaderboard', async (req, res) => {
+    try {
+        const topUsers = await UserStats.find({})
+            .sort({ 'stats.totalCommits': -1 }) 
+            .limit(10);
+
+        const simplified = topUsers.map(user => ({
+            username: user.username,
+            profile: user.user?.avatar_url || '',
+            character: user.stats.character || 'Unknown',
+            score: user.stats.score || 0,
+            commits: user.stats.totalCommits || 0,
+            streak: user.stats.longestStreak || 0,
+        }));
+
+        res.json(simplified);
+    } catch (err) {
+        res.status(500).json({ error: 'Failed to fetch leaderboard' });
+    }
+});
+
 
 module.exports = router;

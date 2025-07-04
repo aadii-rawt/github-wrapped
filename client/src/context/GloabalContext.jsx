@@ -3,13 +3,15 @@ import React, { createContext, useContext, useState } from 'react'
 // Step 1: Create the context
 const GlobalContext = createContext()
 
-// Step 2: Create the provider
+
+
 export const GlobalProvider = ({ children }) => {
     const [username, setUsername] = useState(null)
     const [userStats, setUserStats] = useState([])
+    const [notification,setNotification] = useState(null)
 
     return (
-        <GlobalContext.Provider value={{ username, setUsername, userStats, setUserStats }}>
+        <GlobalContext.Provider value={{ username, setUsername, userStats, setUserStats, notification,setNotification }}>
             {children}
         </GlobalContext.Provider>
     )
