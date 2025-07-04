@@ -13,9 +13,92 @@ type User = {
 
 const rank = ["./first.png", "./second.png", "./third.png"];
 
+const dummyData: User[] = [
+    {
+        username: "aadii-rawt",
+        profile: "https://avatars.githubusercontent.com/u/1?v=4",
+        character: "Itachi",
+        score: 9400,
+        commits: 1200,
+        streak: 312,
+    },
+    {
+        username: "devgirl",
+        profile: "https://avatars.githubusercontent.com/u/2?v=4",
+        character: "Goku",
+        score: 9200,
+        commits: 1100,
+        streak: 280,
+    },
+    {
+        username: "openmaster",
+        profile: "https://avatars.githubusercontent.com/u/3?v=4",
+        character: "Levi",
+        score: 8900,
+        commits: 1045,
+        streak: 270,
+    },
+    {
+        username: "bugslayer",
+        profile: "https://avatars.githubusercontent.com/u/4?v=4",
+        character: "Naruto",
+        score: 8700,
+        commits: 980,
+        streak: 250,
+    },
+    {
+        username: "darkcoder",
+        profile: "https://avatars.githubusercontent.com/u/5?v=4",
+        character: "Sasuke",
+        score: 8600,
+        commits: 970,
+        streak: 230,
+    },
+    {
+        username: "nextgen",
+        profile: "https://avatars.githubusercontent.com/u/6?v=4",
+        character: "Luffy",
+        score: 8500,
+        commits: 940,
+        streak: 225,
+    },
+    {
+        username: "debugqueen",
+        profile: "https://avatars.githubusercontent.com/u/7?v=4",
+        character: "Hinata",
+        score: 8300,
+        commits: 915,
+        streak: 210,
+    },
+    {
+        username: "backendboss",
+        profile: "https://avatars.githubusercontent.com/u/8?v=4",
+        character: "Kakashi",
+        score: 8100,
+        commits: 890,
+        streak: 200,
+    },
+    {
+        username: "uiwizard",
+        profile: "https://avatars.githubusercontent.com/u/9?v=4",
+        character: "Nezuko",
+        score: 8000,
+        commits: 860,
+        streak: 195,
+    },
+    {
+        username: "codeblade",
+        profile: "https://avatars.githubusercontent.com/u/10?v=4",
+        character: "Zoro",
+        score: 7900,
+        commits: 850,
+        streak: 190,
+    },
+];
+
 const Leaderboard: React.FC = () => {
 
-    const [users, setUsers] = useState<User[]>([]);
+    const [users, setUsers] = useState<User[]>(dummyData);
     const ref = useRef<HTMLDivElement>(null);
     const { scrollYProgress } = useScroll({
         target: ref,
