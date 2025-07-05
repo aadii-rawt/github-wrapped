@@ -158,7 +158,7 @@ router.get('/leaderboard', async (req, res) => {
         const simplified = topUsers.map(user => ({
             username: user.username,
             profile: user.user?.avatar_url || '',
-            character: user.characterInfo.name || 'Unknown',
+            character: user?.characterInfo?.name || 'Unknown',
             score: user.stats.score || 0,
             commits: user.stats.totalCommits || 0,
             streak: user.stats.longestStreak || 0,

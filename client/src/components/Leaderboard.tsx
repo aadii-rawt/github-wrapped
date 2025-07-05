@@ -98,12 +98,13 @@ const dummyData: User[] = [
 
 const Leaderboard: React.FC = () => {
 
-    const [users, setUsers] = useState<User[]>(dummyData);
+    const [users, setUsers] = useState<User[]>([]);
     const ref = useRef<HTMLDivElement>(null);
     const { scrollYProgress } = useScroll({
         target: ref,
         offset: ["start 0.9", "start 0.6"],
     });
+    const [loading, setLoading] = useState(true);
 
     const scale = useTransform(scrollYProgress, [0, 1], [0.8, 1]);
 
@@ -112,6 +113,7 @@ const Leaderboard: React.FC = () => {
             try {
                 const res = await axios.get(`${import.meta.env.VITE_API_URL}/api/stats/leaderboard`);
                 setUsers(res.data);
+                setLoading(false);
             } catch (err) {
                 console.error("Failed to fetch leaderboard:", err);
             }
@@ -139,28 +141,53 @@ const Leaderboard: React.FC = () => {
                         </tr>
                     </thead>
                     <tbody className="text-white divide-y divide-gray-700/50">
-                        {users.map((user, idx) => (
-                            <tr key={user.username} className="hover:bg-[#1a1a1a] transition">
-                                <td className={`px-4 ${idx + 1 > 3 && 'pl-7'} py-3 font-semibold text-gray-400`}>
-                                    {idx + 1 <= 3 ? <img src={rank[idx]} className="w-9" /> : idx + 1}
-                                </td>
-                                <td className="px-4 py-3 flex item-center gap-4">
-                                    <a href={`https://github.com/${user.username}`}>
-                                        <img
-                                            src={user.profile}
-                                            alt={user.username}
-                                            className="w-8 h-8 rounded-full border border-white/20"
-                                        />
-                                    </a>
-                                    <a href={`https://github.com/${user.username}`} className="mt-1 hover:underline"> {user.username}</a>
-                                </td>
-                                {/* <td className="px-4 py-3 font-medium"></td> */}
-                                {/* <td className="px-4 py-3 font-semibold text-green-400">{user.score}</td> */}
-                                <td className="px-4 py-3 text-purple-300">{user.character}</td>
-                                <td className="px-4 py-3">{user.commits}</td>
-                                <td className="px-4 py-3 text-pink-400">{user.streak}🔥</td>
-                            </tr>
-                        ))}
+                        {loading ?
+                            Array(10).fill("").map((_, i) =>
+                                <tr className="hover:bg-[#1a1a1a] transition">
+                                    <td className={`px-4 py-3 font-semibold text-gray-400 `}>
+                                        <div className="bg-[#212121] w-8 h-7 animate-pulse rounded-xs"></div>
+                                    </td>
+                                    <td className="px-4 py-3 flex item-center gap-4">
+                                        <div className="bg-[#212121] w-8 h-8 rounded-full animate-pulse "></div>
+                                        <div className="bg-[#212121] w-20 h-7 animate-pulse rounded-xs"></div>
+
+                                    </td>
+                                    <td className="px-4 py-3 text-purple-300">
+                                        <div className="bg-[#212121] w-24 h-7 animate-pulse rounded-xs"></div>
+
+                                    </td>
+                                    <td className="px-4 py-3">
+                                        <div className="bg-[#212121] w-16 h-7 animate-pulse rounded-xs"></div>
+
+                                    </td>
+                                    <td className="px-4 py-3 text-pink-400">
+                                        <div className="bg-[#212121] w-16 h-7 animate-pulse rounded-xs"></div>
+
+                                    </td>
+                                </tr>
+                            )
+                            :
+                            users.map((user, idx) => (
+                                <tr key={user.username} className="hover:bg-[#1a1a1a] transition">
+                                    <td className={`px-4 ${idx + 1 > 3 && 'pl-7'} py-3 font-semibold text-gray-400`}>
+                                        {idx + 1 <= 3 ? <img src={rank[idx]} className="w-9" /> : idx + 1}
+                                    </td>
+                                    <td className="px-4 py-3 flex item-center gap-4">
+                                        <a href={`https://github.com/${user.username}`}>
+                                            <img
+                                                src={user.profile}
+                                                alt={user.username}
+                                                className="w-8 h-8 rounded-full border border-white/20"
+                                            />
+                                        </a>
+                                        <a href={`https://github.com/${user.username}`} className="mt-1 hover:underline"> {user.username}</a>
+                                    </td>
+                                    <td className="px-4 py-3 text-purple-300">{user.character}</td>
+                                    <td className="px-4 py-3">{user.commits}</td>
+                                    <td className="px-4 py-3 text-pink-400">{user.streak}🔥</td>
+                                </tr>
+                            ))}
+                    
                     </tbody>
                 </table>
             </div>
