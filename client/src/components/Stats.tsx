@@ -44,13 +44,13 @@ const Stats: React.FC = () => {
 
                                 <div className="space-y-2">
                                     <ul className='text-sm'>
-                                        <li className='flex items-center gap-2 text-gray-300 '>5000+ commites/year <GoArrowRight /> Itachi</li>
-                                        <li className='flex items-center gap-2 text-gray-300 '>2000+ commites/year <GoArrowRight /> Satoru Gojo</li>
-                                        <li className='flex items-center gap-2 text-gray-300 '>1000+ commites/year <GoArrowRight /> Goku</li>
-                                        <li className='flex items-center gap-2 text-gray-300 '>500+ commites/year <GoArrowRight /> Kakashi</li>
-                                        <li className='flex items-center gap-2 text-gray-300 '>200+ commites/year <GoArrowRight /> Naruto</li>
-                                        <li className='flex items-center gap-2 text-gray-300 '>50+ commites/year <GoArrowRight />  Roronoa Zoro </li>
-                                        <li className='flex items-center gap-2 text-gray-300 '>Less than 50 commites <GoArrowRight /> Luffy</li>
+                                        <li className='flex items-center gap-2 text-gray-300 '>5000+ commits/year <GoArrowRight /> Itachi</li>
+                                        <li className='flex items-center gap-2 text-gray-300 '>2000+ commits/year <GoArrowRight /> Satoru Gojo</li>
+                                        <li className='flex items-center gap-2 text-gray-300 '>1000+ commits/year <GoArrowRight /> Goku</li>
+                                        <li className='flex items-center gap-2 text-gray-300 '>500+ commits/year <GoArrowRight /> Kakashi</li>
+                                        <li className='flex items-center gap-2 text-gray-300 '>200+ commits/year <GoArrowRight /> Naruto</li>
+                                        <li className='flex items-center gap-2 text-gray-300 '>50+ commits/year <GoArrowRight />  Roronoa Zoro </li>
+                                        <li className='flex items-center gap-2 text-gray-300 '>Less than 50 commits <GoArrowRight /> Luffy</li>
                                     </ul>
                                 </div>
                                 <div
@@ -102,13 +102,13 @@ const Stats: React.FC = () => {
 
                                 <div className="space-y-2">
                                     <ul className='text-sm'>
-                                        <li className='flex items-center gap-2 text-gray-300 '>5000+ commites : Akatsuki</li>
-                                        <li className='flex items-center gap-2 text-gray-300 '>2000+ commites : Jujutsu Special</li>
-                                        <li className='flex items-center gap-2 text-gray-300 '>1000+ commites : Saiyan God</li>
-                                        <li className='flex items-center gap-2 text-gray-300 '>500+ commites : Hasira</li>
-                                        <li className='flex items-center gap-2 text-gray-300 '>200+ commites : Hokage</li>
-                                        <li className='flex items-center gap-2 text-gray-300 '>50+ commites :  Swordsman </li>
-                                        <li className='flex items-center gap-2 text-gray-300 '>Less than 50 commites : Rookie</li>
+                                        <li className='flex items-center gap-2 text-gray-300 '>5000+ commits : Akatsuki</li>
+                                        <li className='flex items-center gap-2 text-gray-300 '>2000+ commits : Jujutsu Special</li>
+                                        <li className='flex items-center gap-2 text-gray-300 '>1000+ commits : Saiyan God</li>
+                                        <li className='flex items-center gap-2 text-gray-300 '>500+ commits : Hasira</li>
+                                        <li className='flex items-center gap-2 text-gray-300 '>200+ commits : Hokage</li>
+                                        <li className='flex items-center gap-2 text-gray-300 '>50+ commits :  Swordsman </li>
+                                        <li className='flex items-center gap-2 text-gray-300 '>Less than 50 commits : Rookie</li>
                                     </ul>
                                 </div>
                                 <div

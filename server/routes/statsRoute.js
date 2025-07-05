@@ -132,14 +132,14 @@ router.get("/", async (req, res) => {
 });
 
 router.post("/save", async (req, res) => {
-  const { username, user, stats } = req.body;
-  if (!username || !user || !stats) return res.status(400).json({ error: 'Missing data' });
+  const { username, user, stats, characterInfo } = req.body;
+  if (!username || !user || !stats || !characterInfo) return res.status(400).json({ error: 'Missing data' });
 
   try {
     const result = await UserStats.findOneAndUpdate(
       { username },
-      { user, stats, updatedAt: new Date() },
-      { upsert: true, new: true }
+      { user, stats, updatedAt: new Date(), characterInfo, },
+      { upsert: true, new: true },
     );
 
     res.json({ message: 'User stats saved or updated', data: result });
@@ -158,7 +158,7 @@ router.get('/leaderboard', async (req, res) => {
         const simplified = topUsers.map(user => ({
             username: user.username,
             profile: user.user?.avatar_url || '',
-            character: user.stats.character || 'Unknown',
+            character: user.characterInfo.name || 'Unknown',
             score: user.stats.score || 0,
             commits: user.stats.totalCommits || 0,
             streak: user.stats.longestStreak || 0,

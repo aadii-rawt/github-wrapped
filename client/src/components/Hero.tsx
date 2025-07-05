@@ -11,7 +11,7 @@ import ToastNotification from './ToastNotification'
 
 const Hero: React.FC = () => {
 
-    const { username, setUsername, notification, setNotification } = useGlobalContext()
+    const { user, setUser, username, setUsername, notification, setNotification } = useGlobalContext()
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null)
     const navigate = useNavigate();
@@ -25,7 +25,8 @@ const Hero: React.FC = () => {
         try {
             const res = await axios.get(`https://api.github.com/users/${username}`);
             if (res.status == 200) {
-                navigate(`/stats?username=${username}`);
+                setUser(res.data)
+                navigate(`/stats`);
             }
         } catch (err) {
             setNotification({ msg: "User not found", text: "Please check username and try again" })

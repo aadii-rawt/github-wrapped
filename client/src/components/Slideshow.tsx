@@ -33,7 +33,7 @@ const characterMap = [
 
 const SlideShow: React.FC = () => {
 
-    const { userStats, setUserStats, notification, setNotification, setCharacterInfo } = useGlobalContext()
+    const { user, username, userStats, setUserStats, notification, setNotification, setCharacterInfo } = useGlobalContext()
     const [currentIndex, setCurrentIndex] = useState(0);
     const [progress, setProgress] = useState(0);
     const [loading, setLoading] = useState(true);
@@ -41,7 +41,7 @@ const SlideShow: React.FC = () => {
     const progressRef = useRef();
     const location = useLocation()
     const queryParams = new URLSearchParams(location.search)
-    const username = queryParams.get('username')
+    // const username = queryParams.get('username')
     const navigate = useNavigate()
 
     useEffect(() => {
@@ -65,6 +65,7 @@ const SlideShow: React.FC = () => {
 
 
     const getCharacterInfo = (totalCommits: number) => {
+        
         return characterMap.find(({ min }) => totalCommits >= min) || characterMap[characterMap.length - 1];
     };
 
@@ -73,18 +74,20 @@ const SlideShow: React.FC = () => {
         const fetchUserStats = async () => {
             if (!username) return
             try {
-                const userRes = await axios.get(`https://api.github.com/users/${username}`);
+                // const userRes = await axios.get(`https://api.github.com/users/${username}`);
                 const statsRes = await axios.get(`${import.meta.env.VITE_API_URL}/api/stats?username=${username}`);
 
-                const user = userRes.data;
+                // const user = userRes.data;
                 const stats = statsRes.data;
                 setUserStats({ user, stats });
 
-
-
-                const totalCommits = userStats?.stats?.totalCommits || 0;
-                const characterInfo = getCharacterInfo(totalCommits);
+                const totalCommits = stats.totalCommits || 0;
+                console.log(stats.totalCommits);
+                
+                const characterInfo = getCharacterInfo(stats.totalCommits);
                 setCharacterInfo(characterInfo)
+                console.log(characterInfo);
+                
                 // Save/update to your MongoDB via backend
                 await axios.post(`${import.meta.env.VITE_API_URL}/api/stats/save`, {
                     username,
@@ -92,7 +95,8 @@ const SlideShow: React.FC = () => {
                     stats,
                     characterInfo
                 });
-
+                console.log(user, user, characterInfo);
+                
             } catch (err) {
                 console.log(err);
             } finally {
@@ -101,7 +105,7 @@ const SlideShow: React.FC = () => {
         }
 
         fetchUserStats();
-    }, [])
+    }, [characterMap])
 
     // Auto-advance
     useEffect(() => {
