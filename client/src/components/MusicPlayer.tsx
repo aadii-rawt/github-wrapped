@@ -9,15 +9,15 @@ type TrackType  = {
 
 const tracks : TrackType[] = [
     {
-        name: 'Raftaar',
+        name: 'Bawe Raftaar ft. Badshah',
         file: '/bawe.mp3'
     },
     {
-        name: 'Kendrick Lamar',
+        name: 'Kendrick Lamar - Not Like Us',
         file: '/notlikeus.mp3'
     },
     {
-        name: 'Karan Aujla',
+        name: 'Wavy - Karan Aujla',
         file: '/wavy.mp3'
     }
 ]
