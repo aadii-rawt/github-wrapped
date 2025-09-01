@@ -11,9 +11,8 @@ import ToastNotification from '../components/ToastNotification'
 
 const Home: React.FC = () => {
 
-    const { user, setUser, username, setUsername, notification, setNotification } = useGlobalContext()
+    const { setUser, username, setUsername, notification, setNotification } = useGlobalContext()
     const [loading, setLoading] = useState(false);
-    const [error, setError] = useState(null)
     const navigate = useNavigate();
 
     const handleUserStats = async () => {
@@ -36,7 +35,6 @@ const Home: React.FC = () => {
         }
     };
 
-
     return (
 
         <div className="relative min-h-screen w-full">
@@ -47,7 +45,7 @@ const Home: React.FC = () => {
                 <h1 className='text-3xl sm:text-6xl md:text-7xl font-bold'>Code, Push, Merge, <br /></h1>
                 <h1 className='text-3xl sm:text-6xl md:text-7xl font-bold'> Repeat - Wrapped.</h1>
                 <p className=' mt-8 text-sm text-center md:text-lg'>See how many commits you crushed, bugs you squashed, and stars you earned.</p>
-                <p className='mt-2 text-sm text-center md:text-lg font-outfit'>Your GitHub activity, transformed into a beautiful, shareable story.</p>
+                <p className='mt-2 text-sm hidden sm:block text-center md:text-lg font-outfit'>Your GitHub activity, transformed into a beautiful, shareable story.</p>
                 <div className='border z-50 bg-black pl-3 pr-1.5 py-1.5 mt-5 rounded-3xl flex items-center gap-4'>
                     <FaGithub size={28} />
                     <input
@@ -63,6 +61,7 @@ const Home: React.FC = () => {
                         }
                     </button>
                 </div>
+
                 <Leaderboard />
 
                 <footer className='mt-20 pb-10 z-[99999] text-center'>

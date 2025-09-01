@@ -4,6 +4,7 @@ import { IoIosShareAlt } from 'react-icons/io'
 import { MdFileDownload } from 'react-icons/md'
 import { useGlobalContext } from '../context/GloabalContext';
 import { GoArrowRight } from 'react-icons/go';
+import { Link } from 'react-router-dom';
 
 
 const Stats: React.FC = () => {
@@ -124,7 +125,7 @@ const Stats: React.FC = () => {
                 </div>
 
                 <div className="flex justify-end items-center px-3 gap-2">
-                    <button className="bg-white/10 p-1.5 cursor-pointer rounded"><IoIosShareAlt /></button>
+                    <Link to='/share' className="bg-white/10 p-1.5 cursor-pointer rounded"><IoIosShareAlt /></Link>
                     <button className="bg-white/10 p-1.5 cursor-pointer rounded"><MdFileDownload /></button>
                 </div>
             </div>

@@ -51,7 +51,6 @@ const Leaderboard: React.FC = () => {
                         <tr>
                             <th className="px-4 py-3 text-left font-semibold text-sm">Rank</th>
                             <th className="px-4 py-3 text-left font-semibold text-sm">Username</th>
-                            {/* <th className="px-4 py-3 text-left font-semibold text-sm">Score</th> */}
                             <th className="px-4 py-3 text-left font-semibold text-sm">Character</th>
                             <th className="px-4 py-3 text-left font-semibold text-sm">Commits</th>
                             <th className="px-4 py-3 text-left font-semibold text-sm">Streak</th>
@@ -104,7 +103,6 @@ const Leaderboard: React.FC = () => {
                                     <td className="px-4 py-3 text-pink-400">{user.streak}🔥</td>
                                 </tr>
                             ))}
-                    
                     </tbody>
                 </table>
             </div>
