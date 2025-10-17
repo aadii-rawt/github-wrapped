@@ -13,89 +13,6 @@ type User = {
 
 const rank = ["./first.png", "./second.png", "./third.png"];
 
-const dummyData: User[] = [
-    {
-        username: "aadii-rawt",
-        profile: "https://avatars.githubusercontent.com/u/1?v=4",
-        character: "Itachi",
-        score: 9400,
-        commits: 1200,
-        streak: 312,
-    },
-    {
-        username: "devgirl",
-        profile: "https://avatars.githubusercontent.com/u/2?v=4",
-        character: "Goku",
-        score: 9200,
-        commits: 1100,
-        streak: 280,
-    },
-    {
-        username: "openmaster",
-        profile: "https://avatars.githubusercontent.com/u/3?v=4",
-        character: "Levi",
-        score: 8900,
-        commits: 1045,
-        streak: 270,
-    },
-    {
-        username: "bugslayer",
-        profile: "https://avatars.githubusercontent.com/u/4?v=4",
-        character: "Naruto",
-        score: 8700,
-        commits: 980,
-        streak: 250,
-    },
-    {
-        username: "darkcoder",
-        profile: "https://avatars.githubusercontent.com/u/5?v=4",
-        character: "Sasuke",
-        score: 8600,
-        commits: 970,
-        streak: 230,
-    },
-    {
-        username: "nextgen",
-        profile: "https://avatars.githubusercontent.com/u/6?v=4",
-        character: "Luffy",
-        score: 8500,
-        commits: 940,
-        streak: 225,
-    },
-    {
-        username: "debugqueen",
-        profile: "https://avatars.githubusercontent.com/u/7?v=4",
-        character: "Hinata",
-        score: 8300,
-        commits: 915,
-        streak: 210,
-    },
-    {
-        username: "backendboss",
-        profile: "https://avatars.githubusercontent.com/u/8?v=4",
-        character: "Kakashi",
-        score: 8100,
-        commits: 890,
-        streak: 200,
-    },
-    {
-        username: "uiwizard",
-        profile: "https://avatars.githubusercontent.com/u/9?v=4",
-        character: "Nezuko",
-        score: 8000,
-        commits: 860,
-        streak: 195,
-    },
-    {
-        username: "codeblade",
-        profile: "https://avatars.githubusercontent.com/u/10?v=4",
-        character: "Zoro",
-        score: 7900,
-        commits: 850,
-        streak: 190,
-    },
-];
-
 const Leaderboard: React.FC = () => {
 
     const [users, setUsers] = useState<User[]>([]);
@@ -126,7 +43,7 @@ const Leaderboard: React.FC = () => {
         <motion.div
             ref={ref}
             style={{ scale }}
-            className="bg-black z-40 min-w-6xl max-w-xl mt-10 transition-transform duration-300"
+            className="bg-black z-40 md:min-w-6xl md:max-w-xl mt-10 transition-transform duration-300"
         >
             <div className="overflow-x-auto rounded-lg border border-gray-700 bg-[#18181C]">
                 <table className="w-full divide-y divide-gray-700 text-sm">
@@ -134,7 +51,6 @@ const Leaderboard: React.FC = () => {
                         <tr>
                             <th className="px-4 py-3 text-left font-semibold text-sm">Rank</th>
                             <th className="px-4 py-3 text-left font-semibold text-sm">Username</th>
-                            {/* <th className="px-4 py-3 text-left font-semibold text-sm">Score</th> */}
                             <th className="px-4 py-3 text-left font-semibold text-sm">Character</th>
                             <th className="px-4 py-3 text-left font-semibold text-sm">Commits</th>
                             <th className="px-4 py-3 text-left font-semibold text-sm">Streak</th>
@@ -187,7 +103,6 @@ const Leaderboard: React.FC = () => {
                                     <td className="px-4 py-3 text-pink-400">{user.streak}🔥</td>
                                 </tr>
                             ))}
-                    
                     </tbody>
                 </table>
             </div>

@@ -9,6 +9,7 @@ import SecondStory from "./SecondStory";
 import ForthStep from "./ForthStep";
 import { useGlobalContext } from '../context/GloabalContext'
 import MusicPlayer from "./MusicPlayer";
+import RepoPromoCard from "./RepoPromoCard";
 const AUTO_PLAY_INTERVAL = 10000; // milliseconds
 
 
@@ -61,7 +62,7 @@ const SlideShow: React.FC = () => {
         return () => clearInterval(interval)
     }, [loading])
 
-    const slides = [<SecondStory />, <ForthStep />, <Stats />,];
+    const slides = [<SecondStory />, <ForthStep />,<RepoPromoCard />, <Stats />,];
 
 
     const getCharacterInfo = (totalCommits: number) => {
