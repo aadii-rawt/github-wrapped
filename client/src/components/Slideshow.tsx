@@ -39,7 +39,6 @@ const SlideShow: React.FC = () => {
     const [progress, setProgress] = useState(0);
     const [loading, setLoading] = useState(true);
     const [loadingIndex, setLoadingIndex] = useState(0)
-    const progressRef = useRef();
     const location = useLocation()
     const queryParams = new URLSearchParams(location.search)
     // const username = queryParams.get('username')
