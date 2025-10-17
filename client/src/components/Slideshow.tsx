@@ -10,7 +10,8 @@ import ForthStep from "./ForthStep";
 import { useGlobalContext } from '../context/GloabalContext'
 import MusicPlayer from "./MusicPlayer";
 import RepoPromoCard from "./RepoPromoCard";
-const AUTO_PLAY_INTERVAL = 10000; // milliseconds
+import YearCascadeSlide from "./YearCascadeSlide";
+const AUTO_PLAY_INTERVAL = 8000; // milliseconds
 
 
 const loadingMessages: string[] = [
@@ -61,7 +62,7 @@ const SlideShow: React.FC = () => {
         return () => clearInterval(interval)
     }, [loading])
 
-    const slides = [<SecondStory />, <ForthStep />,<RepoPromoCard />, <Stats />,];
+    const slides = [<SecondStory />, <YearCascadeSlide year={2025} rows={5} />, <ForthStep />,<RepoPromoCard />, <Stats />,];
 
 
     const getCharacterInfo = (totalCommits: number) => {
