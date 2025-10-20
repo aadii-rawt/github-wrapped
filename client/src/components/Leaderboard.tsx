@@ -47,7 +47,7 @@ const Leaderboard: React.FC = () => {
       className="bg-black z-40 md:min-w-6xl md:max-w-xl mt-10 transition-transform duration-300"
     >
       {/* ------- Mobile-only compact cards (no desktop changes) ------- */}
-      <div className="md:hidden space-y-2">
+      <div className="md:hidden space-y-2 min-w-[19rem]">
         {(loading ? skeleton : users).map((_, idx) =>
           loading ? (
             <div key={`sk-${idx}`} className="rounded-lg border border-gray-700 bg-[#18181C] p-3">
