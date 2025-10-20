@@ -2,7 +2,7 @@ import React from 'react'
 
 const Header: React.FC = () => {
     return (
-        <div className='flex w-full justify-end p-7 mb-20 z-50'>
+        <div className='flex w-full justify-end sm:p-7 py-7 px-4 mb-20 z-50'>
             <a
                 href="https://github.com/aadii-rawt/github-wrapped"
                 target='_blank'

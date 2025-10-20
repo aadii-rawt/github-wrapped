@@ -40,7 +40,7 @@ const Home: React.FC = () => {
         <div className="relative min-h-screen w-full">
             <div className="absolute z-10 h-full w-full bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] [background-size:16px_16px] [mask-image:radial-gradient(ellipse_50%_50%_at_50%_50%,#F5F5F5B3_50%,transparent_100%)]">
             </div>
-            <div className='w-full text-white h-full flex items-center flex-col z-[10000] bg-transparent px-1'>
+            <div className='w-full text-white h-full flex items-center flex-col z-[10000] bg-transparent px-4 overflow-hidden'>
                 <Header />
                 <h1 className='text-3xl sm:text-6xl md:text-7xl font-bold'>Code, Push, Merge, <br /></h1>
                 <h1 className='text-3xl sm:text-6xl md:text-7xl font-bold'> Repeat - Wrapped.</h1>
