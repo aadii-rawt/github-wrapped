@@ -4,7 +4,7 @@
   "description": "Get your personal **GitHub Wrapped** – a fun, visual summary of your GitHub activity.\r View your most active repositories, contributions, commit stats, languages, and more – all in one beautiful, shareable page.",
   "main": "index.js",
   "scripts": {
-    "start": "",
+    "start": "node server.js",
     "dev": "concurrently \"npm run dev --prefix client\" \"npm start --prefix server\"",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
