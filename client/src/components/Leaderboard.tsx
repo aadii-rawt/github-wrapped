@@ -68,7 +68,7 @@ const Leaderboard: React.FC = () => {
                   {idx + 1 <= 3 ? <img src={rank[idx]} className="w-7" /> : idx + 1}
                 </div>
 
-                <a href={`https://github.com/${users[idx].username}`}>
+                <a href={`https://github.com/${users[idx].username}`} target="_blank">
                   <img
                     src={users[idx].profile}
                     alt={users[idx].username}
@@ -79,6 +79,7 @@ const Leaderboard: React.FC = () => {
                 <div className="flex-1">
                   <a
                     href={`https://github.com/${users[idx].username}`}
+                    target="_blank"
                     className="block text-white text-sm font-medium hover:underline"
                   >
                     {users[idx].username}
