@@ -141,14 +141,14 @@ const Leaderboard: React.FC = () => {
                         {idx + 1 <= 3 ? <img src={rank[idx]} className="w-9" /> : idx + 1}
                       </td>
                       <td className="px-4 py-3 flex item-center gap-4">
-                        <a href={`https://github.com/${user.username}`}>
+                        <a href={`https://github.com/${user.username}`} target="_blank">
                           <img
                             src={user.profile}
                             alt={user.username}
                             className="w-8 h-8 rounded-full border border-white/20"
                           />
                         </a>
-                        <a href={`https://github.com/${user.username}`} className="mt-1 hover:underline">
+                        <a href={`https://github.com/${user.username}`} className="mt-1 hover:underline" target="_blank">
                           {user.username}
                         </a>
                       </td>
